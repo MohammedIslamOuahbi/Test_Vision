@@ -7,4 +7,4 @@ databases==0.6.0  # Database connection handling
 python-multipart==0.0.6  # For file uploads
 PyPDF2==3.0.0  # For PDF manipulation
 reportlab==3.6.12  # For generating PDFs
-logging==0.5.1.2  # Logging management (if manually installed)
+logging==0.4.9.6  # Logging management (if manually installed)
