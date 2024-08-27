@@ -7,3 +7,5 @@ python-multipart==0.0.6  # For file uploads
 PyPDF2==3.0.0  # For PDF manipulation
 reportlab==3.6.12  # For generating PDFs
 logging==0.4.9.6  # Logging management (if manually installed)
+SQLAlchemy==1.4.0  # Or compatible version
+
