@@ -97,10 +97,18 @@ collectDataChifer('#coordinateTable2', phories_tab_ch_2);
             vision_colores_row_2.push(checkbox.getAttribute('data-chifer'));
         }
     });
-
+    console.log('Page 1 Data:');
+    console.log('ID:', page1Data.id);
+    console.log('Created At:', page1Data.created_at);
+    console.log('Name:', page1Data.first_and_last_name);
+    console.log('Birth Day:', page1Data.birthDay, 'Type:', typeof page1Data.birthDay);
+    console.log('Age:', page1Data.age);
+    console.log('Job:', page1Data.job);
+    console.log('Medical Antidotes:', page1Data.medical_antidotes);
+    console.log('Correction:', page1Data.correction);
     // Log collected data
     console.log('acuite_od_ch_box_2_12_1:', acuite_od_ch_box_2_12_1);
-    console.log('acuite_od_ch_box_1_7_1:', acuite_od_ch_box_1_7_1);
+    console.log('acuite_od_ch_box_1_7_1:', acuite_od_ch_box_1_7_1); 
     console.log('acuite_og_ch_box_2_12_2:', acuite_og_ch_box_2_12_2);
     console.log('acuite_og_ch_box_1_7_2:', acuite_og_ch_box_1_7_2);
     console.log('acuite_bino_ch_box_2_12_3:', acuite_bino_ch_box_2_12_3);

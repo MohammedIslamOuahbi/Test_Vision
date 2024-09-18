@@ -34,7 +34,7 @@ app.mount("/icons", StaticFiles(directory="icons"), name="icons")
 #========================================================================================================================
 #=======================  LOgin Page ================================================================================
 users: List[UserInfo] = [
-    UserInfo(id=1, username="babziz mostafa", password="00000000"),
+    UserInfo(id=1, username="babziz mostafa", password="0000"),
     UserInfo(id=2, username="mohammed islam ouahbi", password="11111111"),
 ]
 #========================================================================================================================
@@ -73,10 +73,12 @@ class PatientTabResponse(BaseModel):
     id: int
     first_and_last_name: str
     created_at: str
+    birthDay: str 
     form_type: str
 #==============================================================================================
 class PatientInfo(BaseModel):
     created_at: datetime
+    birthDay: str
     id: int
     first_and_last_name: str
     age: str
@@ -105,11 +107,11 @@ def get_patient_data(patient_id: int, db: Session = Depends(get_db)):
     patient_data = {
         "id": str(patient.id),
         "first_and_last_name": patient.first_and_last_name,
+        "birthDay": patient.birthDay,
         "age": patient.age,
         "job": patient.job,
         "medical_antidotes": patient.medical_antidotes,
         "created_at": patient.created_at,
-        #"correction": patient.correction,
         "base_form": None,
         "correction_form": None 
     }
@@ -161,7 +163,6 @@ def get_patient_data(patient_id: int, db: Session = Depends(get_db)):
                 "phories_tab_ch_4" : patient.base_form.test_2.phories_tab_ch_4,
                 "vision_colores_row_3" : patient.base_form.test_2.vision_colores_row_3,
                 "vision_colores_row_4" : patient.base_form.test_2.vision_colores_row_4
-                # Include other fields from Test2 as needed
             }
 
         # Get Test3 data
@@ -236,7 +237,8 @@ def get_patient_data(patient_id: int, db: Session = Depends(get_db)):
     #==================================================================================    
     patient_info = {
         "id": str(patient.id),
-        "first_and_last_name": patient.first_and_last_name,
+        "first_and_last_name": patient.first_and_last_name, 
+        "birthDay": patient.birthDay, 
         "age": patient.age,
         "job": patient.job,
         "medical_antidotes": patient.medical_antidotes,
@@ -265,10 +267,8 @@ def get_patient_data(patient_id: int, db: Session = Depends(get_db)):
             raise HTTPException(status_code=400, detail="Input PDF file not found")
         
         logger.debug(f"Input PDF path: {input_pdf_path}")
-        logger.debug(f"Output PDF path: {output_pdf_path}")
-        
+        logger.debug(f"Output PDF path: {output_pdf_path}")    
         logger.debug(f"Patient cord data: {patient_cord }")
-        
         logger.debug(f"patient_info data: {patient_info }")
 
         # Your logic for generating the PDF
@@ -315,8 +315,10 @@ async def search_patient(query: str, db: Session = Depends(get_db)):
         
         patients.append({
             "id": patient.id,
-            "first_and_last_name": patient.first_and_last_name,
+            "first_and_last_name": patient.first_and_last_name, 
+            "birthDay": patient.birthDay,
             "created_at": patient.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+
             "form_type": form_type
         })
     
@@ -335,10 +337,11 @@ async def modify_patient(id: int, db: Session = Depends(get_db)):
 #=======================================================================================================================
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+Base = declarative_base()  
 #=========================================================================================================================
 class PatientResponse(BaseModel):
     id: int
+    birthDay : str
     first_and_last_name: str
     age: int
     job: str
@@ -383,8 +386,9 @@ def get_last_10_patients(db: Session = Depends(get_db)):
 
         patient_list.append({
             "id": patient.id,
-            "first_and_last_name": patient.first_and_last_name,
+            "first_and_last_name": patient.first_and_last_name, 
             "created_at": patient.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+            "birthDay": patient.birthDay,
             "form_type": form_type
         })
 
@@ -499,6 +503,7 @@ async def process_pdf(data: PatientData ):
         }        
         patient_info = {
             "created_at": data.patient_info.created_at,
+            "birthDay": data.patient_info.birthDay,
             "id": str(data.patient_info.id),
             "first_and_last_name": data.patient_info.first_and_last_name,
             "age": data.patient_info.age,
@@ -589,7 +594,8 @@ async def submit_patient_data(data: PatientCreate, db: Session = Depends(get_db)
         
         # Create the patient
         patient = Patient(
-            created_at = data.created_at,
+            created_at = data.created_at, 
+            birthDay = data.birthDay, 
             first_and_last_name=data.first_and_last_name,
             age=data.age,
             job=data.job,

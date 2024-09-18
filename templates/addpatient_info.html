@@ -42,8 +42,11 @@
                     <label for="nom">Nom & Prénom:  
                         <input type="text" id="nom" name="nom" required> 
                     </label> 
-                    <label for="age">Age:  
-                        <input type="number" id="age" name="age" required> 
+                    <label for="dob">Date de Naissance:  
+                        <input type="date" id="dob" name="dob" required> 
+                    </label>
+                    <label for="age">Âge:  
+                        <input type="text" id="age" name="age" readonly> 
                     </label>
                     <label for="corr">Correction: 
                         <select name="correction" id="correction">
@@ -80,6 +83,34 @@
 <script src="scripts/search_page.js"></script> 
 
 <script src="scripts/search_patient_tab.js"></script>
+
+<script>
+    // Function to calculate age
+    function calculateAge(dob) {
+        const birthDate = new Date(dob);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDifference = today.getMonth() - birthDate.getMonth();
+
+        // Adjust age if the current date is before the birthdate in the current year
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+    // Event listener for date of birth change
+    document.getElementById('dob').addEventListener('change', function() {
+        const dob = this.value;
+        const age = calculateAge(dob);
+        document.getElementById('age').value = age ? age : ''; // Display age or clear the input if no age
+    });
+
+    // Previous button functionality
+    document.getElementById('previous-btn').addEventListener('click', function() {
+        window.location.href = '/userprofile'; // Update this path if necessary
+    });
+</script>
 
 <script>
     document.getElementById('previous-btn').addEventListener('click', function() {

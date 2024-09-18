@@ -27,15 +27,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     row.innerHTML = `
                         <td>${index + 1}</td>
                         <td>${patient.first_and_last_name}</td>
-                        <td>${patient.created_at}</td>
-                        <td>
-                            
-                            <b style="color: ${patient.form_type === 'correction' ? 'red' : 'black'}">
-                                ${patient.form_type}
-                            </b>
-
-                        </td>
+                        <td>${patient.birthDay}</td>
+                        <td><b style="color: ${patient.form_type === 'correction' ? 'red' : 'black'}">${patient.form_type}</b></td>
                         <td>${patient.id}</td>
+                        <td>${patient.created_at}</td>
                         <td><button onclick="modifyPatient(${patient.id})" class="icon-btn edit-btn"><i class="fas fa-edit"></i></button></td>
                         <td><button onclick="viewDetails(${patient.id})" class="icon-btn view-btn"><i class="fas fa-eye"></i></button></td>
                         <td><button onclick="removePatient(${patient.id})" class="icon-btn remove-btn"><i class="fas fa-trash-alt"></i></button></td>
@@ -92,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <h2>Patient Details</h2>
             <p><strong>ID:</strong> ${patient.id}</p>
             <p><strong>Name:</strong> ${patient.first_and_last_name}</p>
+            <p><strong>Date de Naissance:</strong> ${patient.age}</p>
             <p><strong>Age:</strong> ${patient.age}</p>
             <p><strong>Job:</strong> ${patient.job}</p>
             <p><strong>Medical Antidotes:</strong> ${patient.medical_antidotes}</p>
@@ -130,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const page1Data = {
                     id: patientData.id.toString(),
                     created_at: patientData.created_at,
+                    birthDay: patientData.birthDay,
                     first_and_last_name: patientData.first_and_last_name,
                     age: patientData.age,
                     job: patientData.job,

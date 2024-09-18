@@ -5,8 +5,9 @@ from typing import List, Optional
 app = FastAPI()
 
 class PatientInfo(BaseModel):
-    id: str
+    id: str   
     first_and_last_name: str
+    birthDay : str
     age: str
     job: str
     medical_antidotes: str

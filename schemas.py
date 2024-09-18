@@ -55,6 +55,7 @@ class CorrectionFormCreate(BaseModel):
     test_3: Test3Create
 
 class PatientCreate(BaseModel):
+    birthDay : str
     created_at: datetime
     first_and_last_name: str
     age: str
@@ -68,6 +69,7 @@ class PatientCreate(BaseModel):
 
 class PatientInfo(BaseModel):
     created_at: datetime
+    birthDay : str
     id: str
     first_and_last_name: str
     age: str
@@ -84,6 +86,7 @@ class PatientData(BaseModel):
 class PatientOut(BaseModel):
     id: str
     created_at: datetime
+    birthDay : str
     first_and_last_name: str
     age: str
     correction: str 
@@ -97,6 +100,7 @@ class PatientOutTab(BaseModel):
     first_and_last_name: str
     age: str
     created_at: datetime
+    birthDay : str
     correction: str 
     form_type: Optional[str]  # Assuming 'correction' is the form type
     

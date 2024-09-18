@@ -1,22 +1,23 @@
 document.getElementById('coordinateTable1').addEventListener('click', function(e) {
     if (e.target.tagName === 'LABEL') {
-        const td = e.target.parentElement;
-        const table = td.closest('table');
-        const column = td.cellIndex;
+        const td = e.target.closest('td'); // Get the parent cell of the clicked label
+        const table = td.closest('table'); // Get the table element
 
-        // Remove 'selected' class from all cells in this column
-        for (let row of table.rows) {
-            if (row.cells[column]) {
-                row.cells[column].classList.remove('selected');
-            }
-        }
+        // Remove 'selected' class from all cells
+        const allCells = table.querySelectorAll('td');
+        allCells.forEach(cell => {
+            cell.classList.remove('selected');
+        });
 
         // Add 'selected' class to the clicked cell
         td.classList.add('selected');
 
-        const radio = td.getElementsByTagName('input')[0];
-        radio.checked = true;
+        // Check the associated radio button
+        const radio = td.querySelector('input[type="radio"]');
+        if (radio) {
+            radio.checked = true;
+        }
 
-        console.log(`Selected: ${e.target.textContent} in column ${String.fromCharCode(65 + column - 1)}${td.parentElement.rowIndex}`);
+        console.log(`Selected: ${e.target.textContent} at row ${td.parentElement.rowIndex}, column ${td.cellIndex}`);
     }
 });

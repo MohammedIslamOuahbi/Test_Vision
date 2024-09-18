@@ -18,6 +18,7 @@ const finalData = {
     id : page1Data.id || "",
     first_and_last_name: page1Data.first_and_last_name || '',
     created_at: page1Data.created_at || '',
+    birthDay : page1Data.birthDay || '',
     age: page1Data.age || '',
     job: page1Data.job || '',
     medical_antidotes: page1Data.medical_antidotes || '',

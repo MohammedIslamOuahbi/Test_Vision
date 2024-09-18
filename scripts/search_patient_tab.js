@@ -18,15 +18,17 @@ window.onload = async function() {
                 const row = document.createElement('tr');
                 
                 row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${result.first_and_last_name}</td>
-                    <td>${result.created_at}</td>
-                    <td>
-                        <button onclick="viewPdf(${result.id})">View PDF</button>
-                        <button onclick="editPatient(${result.id})">Edit</button>
-                        <button onclick="removePatient(${result.id})">Remove</button>
-                    </td>
-                `;
+                        <td>${index + 1}</td>
+                        <td>${patient.first_and_last_name}</td>
+                        <td>${new Date(patient.birthDay).toLocaleDateString()}</td> 
+                        <td><b style="color: ${patient.form_type === 'correction' ? 'red' : 'black'}">${patient.form_type }</b></td>
+                        <td>${patient.id}</td>
+                        <td>${new Date(patient.created_at).toLocaleDateString()}</td>
+                        <td><button onclick="modifyPatient(${patient.id})" class="icon-btn edit-btn"><i class="fas fa-edit"></i></button></td>
+                        <td><button onclick="viewDetails(${patient.id})" class="icon-btn view-btn"><i class="fas fa-eye"></i></button></td>
+                        <td><button onclick="removePatient(${patient.id})" class="icon-btn remove-btn"><i class="fas fa-trash-alt"></i></button></td>
+                        <td><button onclick="viewPDF(${patient.id})" class="icon-btn pdf-btn"><i class="fas fa-file-pdf"></i></button></td>
+                    `;
                 tableBody.appendChild(row);
             });
         } catch (error) {

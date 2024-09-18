@@ -32,9 +32,10 @@ function displayResults(pageId, patients) {
 
             row.innerHTML = `
             <td>${index + 1}</td>
-            <td>${patient.first_and_last_name}</td>
-            <td>${patient.created_at || 'N/A'}</td>
+            <td>${patient.first_and_last_name}</td> 
+            <td>${patient.birthDay || 'N/A'}</td>
             <td>${patient.id}</td>
+            <td>${patient.created_at || 'N/A'}</td>
             <td><button onclick="editPatient(${patient.id})">Edit</button></td>
             `;
 

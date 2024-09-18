@@ -220,15 +220,23 @@ def drow(input_pdf_path, output_pdf_path, pationt_cord):
     can.drawString(x, y, '✖')
     # =======================================================
     radius = 3.5
-
+    #==================================================================================
+    corrected_bino_tab_ch_1 = ['4A1', '8A1', '1B1', '3B1', '6B1', '2C1', '5C1', '7C1']
+    corrected_bino_tab_ch_2 = ['4A2', '8A2', '1B2', '3B2', '6B2', '2C2', '5C2', '7C2']
+    corrected_bino_tab_ch_3 = ['4A3', '8A3', '1B3', '3B3', '6B3', '2C3', '5C3', '7C3']
+    corrected_bino_tab_ch_4 = ['4A4', '8A4', '1B4', '3B4', '6B4', '2C4', '5C4', '7C4']
+    #==================================================================================
     for i in test_1["acuite_bino_tab_ch_1"]:
-        x, y = get_coordinates_char_tab(str(i))
-        can.circle(x, y, radius)
+        if i in corrected_bino_tab_ch_1 : 
+            x, y = get_coordinates_char_tab(str(i))
+            can.circle(x, y, radius)
+ 
     # =======================================================
 
     for i in test_1["acuite_bino_tab_ch_2"]:
-        x, y = get_coordinates_char_tab(str(i))
-        can.circle(x, y, radius)
+        if i in corrected_bino_tab_ch_2 :
+            x, y = get_coordinates_char_tab(str(i))
+            can.circle(x, y, radius)
     # =======================================================
     for i in test_1["duochrome_1"]:
         x, y = Duochrome1[i]
@@ -273,13 +281,15 @@ def drow(input_pdf_path, output_pdf_path, pationt_cord):
     radius = 3.5
 
     for i in test_2["acuite_bino_tab_ch_3"]:
-        x, y = get_coordinates_char_tab(str(i))
-        can.circle(x, y, radius)
+        if i in corrected_bino_tab_ch_3 :
+            x, y = get_coordinates_char_tab(str(i))
+            can.circle(x, y, radius)
     # =======================================================
 
     for i in test_2["acuite_bino_tab_ch_4"]:
-        x, y = get_coordinates_char_tab(str(i))
-        can.circle(x, y, radius)
+        if i in corrected_bino_tab_ch_4 :
+            x, y = get_coordinates_char_tab(str(i))
+            can.circle(x, y, radius)
     # =======================================================
     for i in test_2["duochrome_2"]:
         x, y = Duochrome2[i]

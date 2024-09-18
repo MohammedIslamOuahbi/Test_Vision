@@ -8,6 +8,7 @@ async function generatePDF() {
     const patient_info = {
         id: page1Data.id || '',  // Ensure id is a valid string
         first_and_last_name: page1Data.first_and_last_name || '',
+        birthDay : page1Data.birthDay || '',
         age: page1Data.age || '',
         job: page1Data.job || '',
         medical_antidotes: page1Data.medical_antidotes || '',

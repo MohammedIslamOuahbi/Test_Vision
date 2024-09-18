@@ -15,7 +15,8 @@ from database import Base
 class Patient(Base):
     __tablename__ = "patients"
 
-    created_at = Column(DateTime, default=datetime.utcnow)  # Add the creation timestamp
+    created_at = Column(DateTime, default=datetime.utcnow)  # Add the creation timestamp 
+    birthDay = Column(String)  # Add the creation  
     id = Column(Integer, primary_key=True, index=True)
     first_and_last_name = Column(String, index=True)
     age = Column(String)
